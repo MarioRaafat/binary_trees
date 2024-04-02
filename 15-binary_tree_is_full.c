@@ -13,10 +13,10 @@ int binary_tree_is_full(const binary_tree_t *tree)
 
 	if (tree)
 	{
-		leaves += (tree->left && !tree->right || !tree->left && tree->right) ? 1 : 0;
+		leaves += ((tree->left && !tree->right) || (!tree->left && tree->right)) ? 1 : 0;
 		leaves += binary_tree_leaves(tree->left);
 		leaves += binary_tree_leaves(tree->right);
 	}
 
-	return (leaves > 0 ? 0 : 1);
+	return ((leaves > 0) ? 0 : 1);
 }
