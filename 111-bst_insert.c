@@ -19,7 +19,7 @@ bst_t *bst_insert(bst_t **tree, int value)
 		return (new);
 	}
 	if (value > ptr->n)
-		bst_insert(&ptr->right, value);
+		return (bst_insert(&ptr->right, value));
 	else
-		bst_insert(&ptr->left, value);
+		return (bst_insert(&ptr->left, value));
 }
