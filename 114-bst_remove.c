@@ -9,7 +9,7 @@ bst_t *min(bst_t *node)
 {
 	if (node->left == NULL)
 		return (node);
-	min(node->left);
+	return (min(node->left));
 }
 
 /**
