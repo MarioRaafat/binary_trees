@@ -13,23 +13,21 @@ bst_t *min(bst_t *node)
 }
 
 /**
- * bst_remove - Removes a node from a binary search tree.
+ * rec_bst_remove - Removes a node from a binary search tree.
  * @root: A pointer to the root node of the BST to remove a node from.
  * @value: The value to remove in the BST.
- *
- * Return: A pointer to the new root node after deletion.
  *
  * Description: If the node to be deleted has two children, it
  *              is replaced with its first in-order successor.
  */
-bst_t *bst_remove(bst_t *root, int value)
+void rec_bst_remove(bst_t *root, int value)
 {
 	if (root == NULL)
-		return (NULL);
+		return;
 	if (root->n < value)
-		return (bst_remove(root->right, value));
+		rec_bst_remove(root->right, value);
 	else if (root->n > value)
-		return (bst_remove(root->left, value));
+		rec_bst_remove(root->left, value);
 
 	if (root->left == NULL && root->right == NULL)
 	{
@@ -77,4 +75,20 @@ bst_t *bst_remove(bst_t *root, int value)
 		}
 	}
 
+}
+
+/**
+ * bst_remove - Removes a node from a binary search tree.
+ * @root: A pointer to the root node of the BST to remove a node from.
+ * @value: The value to remove in the BST.
+ *
+ * Return: A pointer to the new root node after deletion.
+ *
+ * Description: If the node to be deleted has two children, it
+ *              is replaced with its first in-order successor.
+ */
+bst_t *bst_remove(bst_t *root, int value)
+{
+	rec_bst_remove(root, value);
+	return (root);
 }
